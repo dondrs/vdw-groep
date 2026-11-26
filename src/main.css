@@ -16,6 +16,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+/* Zijbalk-rijen: actieve rij blijft donker bij hover */
+.filter__chip.is--row.is--active,
+.filter__chip.is--row.is--active:hover {
+  background-color: var(--_colors---brand-primary--brand-65, #283a18);
+  color: var(--_colors---black-shades--shade-0, #fff);
+}
+
 /* Actieve-filtertags (door JS aangemaakt) */
 .vdw-tag {
   background-color: var(--_colors---brand-primary--brand-20, #f5f9f0);
@@ -42,7 +49,7 @@ mark.vdw-hl {
 /* ---------- Grid-weergave ---------- */
 [data-vdw-list][data-view="grid"] {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(14.5em, 1fr));
   gap: 1.5em;
 }
 [data-vdw-list][data-view="grid"] > .live-search__item {
@@ -62,9 +69,6 @@ mark.vdw-hl {
   align-content: space-between;
 }
 [data-vdw-list][data-view="grid"] .align--right-bottom.item--row { justify-self: start; }
-@media screen and (max-width: 991px) {
-  [data-vdw-list][data-view="grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
 @media screen and (max-width: 767px) {
   [data-vdw-list][data-view="grid"] { grid-template-columns: 1fr; }
 }

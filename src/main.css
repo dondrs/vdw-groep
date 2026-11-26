@@ -2,6 +2,11 @@
    Alleen wat niet in Webflow zelf kan: states die door JS worden gezet
    en selectors op basis van een ouder-attribuut. */
 
+/* ---------- Algemeen ----------
+   body had overflow-x: hidden, waardoor body een scrollcontainer werd en
+   position: sticky nergens werkte. clip knipt net zo af, zonder dat effect. */
+html body { overflow-x: clip; }
+
 /* ---------- Fourage-producten: filter ---------- */
 [data-vdw-item][hidden] { display: none !important; }
 
@@ -22,6 +27,9 @@
   background-color: var(--_colors---brand-primary--brand-65, #283a18);
   color: var(--_colors---black-shades--shade-0, #fff);
 }
+
+/* Dunne scrollbar in de filterkaart */
+.filter__bar { scrollbar-width: thin; scrollbar-color: var(--_colors---black-shades--shade-20, #d8d8d8) transparent; }
 
 /* Actieve-filtertags (door JS aangemaakt) */
 .vdw-tag {

@@ -88,6 +88,15 @@
     if (!list || !bar) return;
     root._vdwFilter = true;
 
+    // Zijbalk: alleen zelf scrollen (en Lenis uitzetten) als de kaart echt overloopt
+    var side = root.querySelector('.filter__bar');
+    function syncSideScroll() {
+      if (!side) return;
+      side.toggleAttribute('data-lenis-prevent', side.scrollHeight > side.clientHeight + 1);
+    }
+    window.addEventListener('resize', syncSideScroll);
+    setTimeout(syncSideScroll, 0);
+
     var input = root.querySelector('[data-live-search-input]');
     var empty = root.querySelector('[data-vdw-empty]');
     var resultEl = root.querySelector('[data-vdw-result]');

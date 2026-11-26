@@ -1,2 +1,70 @@
 /* Van der Wal Groep - eigen CSS (sitebreed geladen via jsDelivr)
-   Alleen wat niet in Webflow zelf kan. */
+   Alleen wat niet in Webflow zelf kan: states die door JS worden gezet
+   en selectors op basis van een ouder-attribuut. */
+
+/* ---------- Fourage-producten: filter ---------- */
+[data-vdw-item][hidden] { display: none !important; }
+
+.filter__chip[aria-disabled="true"] { opacity: 0.4; cursor: default; pointer-events: none; }
+.filter__chip:focus-visible { outline: 2px solid var(--_colors---brand-primary--brand-60, #66923a); outline-offset: 2px; }
+.filter__chip.is--active .filter__count { opacity: 0.75; }
+.filter__view .filter__chip { border-color: transparent; background-color: transparent; }
+.filter__view .filter__chip.is--active {
+  background-color: var(--_colors---black-shades--shade-0, #fff);
+  color: var(--_colors---black-shades--shade-60, #191919);
+  border-color: transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Actieve-filtertags (door JS aangemaakt) */
+.vdw-tag {
+  background-color: var(--_colors---brand-primary--brand-20, #f5f9f0);
+  border-color: var(--_colors---brand-primary--brand-40, #b9d79b);
+}
+.vdw-tag__x { margin-left: 0.15em; font-size: 1.1em; line-height: 0.8; opacity: 0.6; }
+.vdw-tag:hover .vdw-tag__x { opacity: 1; }
+
+/* Zoekmarkering in productnaam */
+mark.vdw-hl {
+  background-color: var(--_colors---brand-primary--brand-30, #e0eed3);
+  color: inherit;
+  border-radius: 0.2em;
+  padding: 0 0.08em;
+}
+
+/* Lege staat */
+[data-vdw-empty] { flex-direction: column; align-items: flex-start; gap: 1em; }
+
+/* Item verschijnt */
+@keyframes vdw-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+[data-vdw-item].vdw-in { animation: vdw-in 0.3s cubic-bezier(0.525, 0, 0, 1); }
+
+/* ---------- Grid-weergave ---------- */
+[data-vdw-list][data-view="grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5em;
+}
+[data-vdw-list][data-view="grid"] > .live-search__item {
+  grid-template-columns: 1fr !important;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  align-content: start;
+}
+[data-vdw-list][data-view="grid"] .item--row__img-wrap {
+  height: 11em;
+  justify-content: center;
+  align-items: center;
+}
+[data-vdw-list][data-view="grid"] .swiper__card.item--row {
+  grid-template-columns: 1fr !important;
+  height: 100%;
+  align-content: space-between;
+}
+[data-vdw-list][data-view="grid"] .align--right-bottom.item--row { justify-self: start; }
+@media screen and (max-width: 991px) {
+  [data-vdw-list][data-view="grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 767px) {
+  [data-vdw-list][data-view="grid"] { grid-template-columns: 1fr; }
+}

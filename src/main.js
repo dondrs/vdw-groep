@@ -216,7 +216,7 @@
       bar.querySelectorAll('[data-vdw-filter]').forEach(function (b) {
         var type = attr(b, 'data-vdw-filter'), val = attr(b, 'data-value'), n;
         if (type === 'cat') n = countFor({ cat: val });
-        else if (type === 'toep') n = countFor({ toep: state.toep.indexOf(val) > -1 ? state.toep : state.toep.concat([val]) });
+        else if (type === 'toep') n = countFor({ toep: [val] }); // per optie, los van andere toepassingen
         else n = countFor({ bio: true });
         var c = b.querySelector('[data-vdw-count]');
         if (c) c.textContent = n;
